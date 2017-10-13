@@ -39,9 +39,10 @@ router.delete('/:id', function (req,res){
 
 /* Edit Album */
 router.patch('/:id/edit', function (req,res){
-  knex.raw(`UPDATE my_shelf where id = ${req.params.id}`)
+  knex("my_shelf").update(req.body).where("id", req.params.id)
     .then(function(data){
-      res.json(data.rows)
+      console.log("HIT MY ROUTER PATCH EDIT", data)
+      res.json(data)
     })
 })
 
